@@ -12,11 +12,16 @@ environments:
     staging:
         memory: 1024
         cli-memory: 512
+        # queues: false
+        # mail: false
+        # scheduler: false
         cache: demo-cache
         database: testdb
         runtime: php-7.4
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
             - 'php artisan event:cache'
+            - 'php artisan config:cache'
+            - 'php artisan route:cache'
             - 'npm ci && npm run dev && rm -rf node_modules'
         domain: staging.mule-coder.com
