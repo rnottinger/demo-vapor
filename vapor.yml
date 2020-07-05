@@ -12,7 +12,7 @@ environments:
             - 'php artisan config:cache'
             # - 'php artisan route:cache'
             - 'npm ci && npm run dev && rm -rf node_modules'
-        domain mule-coder.com
+        domain: prod.mule-coder.com
     staging:
         memory: 1024
         cli-memory: 512
