@@ -8,6 +8,8 @@ environments:
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
+            - 'php artisan config:cache'
+            - 'php artisan route:cache'
             - 'npm ci && npm run dev && rm -rf node_modules'
     staging:
         memory: 1024
@@ -18,10 +20,11 @@ environments:
         cache: demo-cache
         database: testdb
         runtime: php-7.4
+        storage: mule-vapor
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
             - 'php artisan event:cache'
             - 'php artisan config:cache'
-            - 'php artisan route:cache'
+            # - 'php artisan route:cache'  remove any route closures
             - 'npm ci && npm run dev && rm -rf node_modules'
         domain: staging.mule-coder.com
